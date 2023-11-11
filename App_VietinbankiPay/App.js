@@ -172,6 +172,7 @@ export default function App() {
         <Stack.Screen name="User" component={User} />
         <Stack.Screen name="Store" component={Store} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );
