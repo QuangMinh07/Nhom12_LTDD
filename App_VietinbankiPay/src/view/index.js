@@ -5,5 +5,6 @@ import Invest from "./Invest";
 import Store from "./Store";
 import Login from "./Login";
 import Search from "./Search";
+import Card from "./Card";
 
-export { Home, Notice, User, Invest, Store, Login, Search };
+export { Home, Notice, User, Invest, Store, Login, Search, Card };

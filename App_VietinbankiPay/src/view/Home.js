@@ -25,7 +25,7 @@ export default function Home({ navigation }) {
       name1: "Đặt sân Golf/Mua đồ Golf",
     },
     {
-      image1: require("../image/icon-park_bill.png"),
+      image1: require("../image/icon-park-outline_shopping.png"),
       name1: "Mua sắm VnShop",
     },
   ];

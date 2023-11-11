@@ -96,7 +96,7 @@ export default function Store({navigation}) {
             </Text>
             <Image
               source={require("../image/tim1.png")}
-              style={{ width: "30px", height: "30px", marginLeft: "10px" }}
+              style={{ width: "30px", height: "30px", marginLeft: "70px" }}
             ></Image>
           </View>
         </View>
