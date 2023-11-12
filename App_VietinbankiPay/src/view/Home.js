@@ -229,10 +229,16 @@ export default function Home({ navigation }) {
         }}
       >
         <View style={{ flexDirection: "column", alignItems: "center" }}>
-          <Image
-            source={require("../image/et_wallet.png")}
-            style={{ width: "38px", height: "32px" }}
-          ></Image>
+          <Pressable
+            onPress={() => {
+              navigation.navigate("Account");
+            }}
+          >
+            <Image
+              source={require("../image/et_wallet.png")}
+              style={{ width: "38px", height: "32px" }}
+            ></Image>
+          </Pressable>
           <Text style={{ fontSize: "15px", fontWeight: "Medium" }}>
             Tài khoản
           </Text>
@@ -422,7 +428,10 @@ export default function Home({ navigation }) {
 
         <View style={{ flex: 2, flexDirection: "row", marginTop: "40px" }}>
           <View>
-            <View
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Phonerecharge");
+              }}
               style={{
                 width: "51px",
                 height: "50px",
@@ -437,7 +446,7 @@ export default function Home({ navigation }) {
                 source={require("../image/bi_phone.png")}
                 style={{ width: "30px", height: "30px" }}
               ></Image>
-            </View>
+            </Pressable>
 
             <View style={{ width: "95px", marginLeft: "20px" }}>
               <Text
