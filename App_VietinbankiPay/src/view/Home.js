@@ -299,7 +299,10 @@ export default function Home({ navigation }) {
       <View style={{ flex: 4 }}>
         <View style={{ flex: 2, flexDirection: "row", marginTop: "10px" }}>
           <View style={{ flexDirection: "column" }}>
-            <View
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Transfer");
+              }}
               style={{
                 width: "51px",
                 height: "50px",
@@ -314,7 +317,7 @@ export default function Home({ navigation }) {
                 source={require("../image/chuyentien.png")}
                 style={{ width: "30px", height: "30px" }}
               ></Image>
-            </View>
+            </Pressable>
 
             <View style={{ width: "95px", marginLeft: "20px" }}>
               <Text

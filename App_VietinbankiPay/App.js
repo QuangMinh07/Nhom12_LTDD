@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Account, Card, Home, Invest, Login, Notice, Phonerecharge, Search, Store, User } from "./src/view";
+import { Account, BankVietin, Card, Home, Invest, Login, Notice, Phonerecharge, Search, Store, User, BankVietin2, Transfer, Result } from "./src/view";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
@@ -176,6 +176,10 @@ export default function App() {
         <Stack.Screen name="Card" component={Card} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Phonerecharge" component={Phonerecharge} />
+        <Stack.Screen name="BankVietin" component={BankVietin} />
+        <Stack.Screen name="BankVietin2" component={BankVietin2} />
+        <Stack.Screen name="Transfer" component={Transfer} />
+        <Stack.Screen name="Result" component={Result} />
       </Stack.Navigator>
     </NavigationContainer>
   );
