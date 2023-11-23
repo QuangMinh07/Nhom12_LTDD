@@ -6,9 +6,19 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Transfer({ navigation }) {
+  var [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://654ad3515b38a59f28ee4286.mockapi.io/bank")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(data);
+        setData(json);
+      });
+  }, []);
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#D8E0EC" }}>
       <View style={{ flexDirection: "row" }}>
@@ -499,143 +509,61 @@ export default function Transfer({ navigation }) {
           marginTop: "20px",
         }}
       >
-        <View
-          style={{
-            width: "428px",
-            height: "90px",
-            backgroundColor: "#FFFFFF",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "20px",
-          }}
-        >
-          <View
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "90px",
-              backgroundColor: "#D9D9D9",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "20px",
-            }}
-          >
-            <Text style={{ fontSize: "25px", fontWeight: "bold" }}>QM</Text>
-          </View>
-
-          <View style={{ marginTop: "40px", marginLeft: "-15px" }}>
-            <Image
-              source={require("../image/Ellipse 9.png")}
-              style={{ width: "20px", height: "20px" }}
-            ></Image>
-          </View>
-
-          <View style={{ marginLeft: "20px" }}>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              LÊ QUANG MINH (555555555)
-            </Text>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              0123456789- Viettinbank
-            </Text>
-            <Text
-              style={{ fontSize: "15px", fontWeight: "bold", color: "gray" }}
+        {data.map((item, index) => {
+          return (
+            <View
+              style={{
+                width: "428px",
+                height: "90px",
+                backgroundColor: "#FFFFFF",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: "20px",
+              }}
             >
-              Giao dịch :11/08/2023
-            </Text>
-          </View>
-        </View>
+              <View
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  borderRadius: "90px",
+                  backgroundColor: "#D9D9D9",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: "20px",
+                }}
+              >
+                <Text style={{ fontSize: "25px", fontWeight: "bold" }}>
+                  {item.name3}
+                </Text>
+              </View>
 
-        <View
-          style={{
-            width: "428px",
-            height: "90px",
-            backgroundColor: "#FFFFFF",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "20px",
-          }}
-        >
-          <View
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "90px",
-              backgroundColor: "#D9D9D9",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "20px",
-            }}
-          >
-            <Text style={{ fontSize: "25px", fontWeight: "bold" }}>QM</Text>
-          </View>
+              <View style={{ marginTop: "40px", marginLeft: "-15px" }}>
+                <Image
+                  source={item.image}
+                  style={{ width: "20px", height: "20px" }}
+                ></Image>
+              </View>
 
-          <View style={{ marginTop: "40px", marginLeft: "-15px" }}>
-            <Image
-              source={require("../image/Ellipse 9.png")}
-              style={{ width: "20px", height: "20px" }}
-            ></Image>
-          </View>
-
-          <View style={{ marginLeft: "20px" }}>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              LÊ QUANG MINH (555555555)
-            </Text>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              0123456789- Viettinbank
-            </Text>
-            <Text
-              style={{ fontSize: "15px", fontWeight: "bold", color: "gray" }}
-            >
-              Giao dịch :11/08/2023
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            width: "428px",
-            height: "90px",
-            backgroundColor: "#FFFFFF",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "20px",
-          }}
-        >
-          <View
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "90px",
-              backgroundColor: "#D9D9D9",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "20px",
-            }}
-          >
-            <Text style={{ fontSize: "25px", fontWeight: "bold" }}>QM</Text>
-          </View>
-
-          <View style={{ marginTop: "40px", marginLeft: "-15px" }}>
-            <Image
-              source={require("../image/Ellipse 9.png")}
-              style={{ width: "20px", height: "20px" }}
-            ></Image>
-          </View>
-
-          <View style={{ marginLeft: "20px" }}>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              LÊ QUANG MINH (555555555)
-            </Text>
-            <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-              0123456789- Viettinbank
-            </Text>
-            <Text
-              style={{ fontSize: "15px", fontWeight: "bold", color: "gray" }}
-            >
-              Giao dịch :11/08/2023
-            </Text>
-          </View>
-        </View>
+              <View style={{ marginLeft: "20px" }}>
+                <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
+                  {item.name1}
+                </Text>
+                <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
+                  {item.name2}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "bold",
+                    color: "gray",
+                  }}
+                >
+                  {item.time}
+                </Text>
+              </View>
+            </View>
+          );
+        })}
       </View>
     </ScrollView>
   );

@@ -6,9 +6,14 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 export default function BankVietin({ navigation }) {
+  const [soTien, setSoTien] = useState("");
+  const [soTK, setSoTK] = useState("");
+  const [chuTK, setChuTK] = useState("012456789");
+  const [tentk, setChuTk1] = useState("Nguyễn Thị Kiều Nghi");
+  const [noiDung, setNoiDung] = useState("");
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ flexDirection: "row" }}>
@@ -40,7 +45,8 @@ export default function BankVietin({ navigation }) {
         </Text>
       </View>
       <View style={{ marginLeft: "70px" }}>
-        <Text style={{ fontSize: "20px", fontWeight: "bold" }}>012456789 </Text>
+        <Text style={{ fontSize: "20px", fontWeight: "bold" }}>{chuTK} </Text>
+        <Text style={{ fontSize: "20px", fontWeight: "bold" }}>{tentk} </Text>
       </View>
       <View style={{ marginLeft: "70px" }}>
         <Text
@@ -96,7 +102,14 @@ export default function BankVietin({ navigation }) {
       >
         <TextInput
           placeholder="Số tài khoản "
-          style={{ width: "164px", height: "50px", fontSize: "20px" }}
+          style={{
+            width: "164px",
+            height: "50px",
+            fontSize: "20px",
+            outlineStyle: "none",
+          }}
+          onChange={(tk) => setSoTK(tk.target.value)}
+          value={soTK}
         ></TextInput>
       </View>
 
@@ -122,7 +135,14 @@ export default function BankVietin({ navigation }) {
       >
         <TextInput
           placeholder="Số tiền "
-          style={{ width: "164px", height: "50px", fontSize: "20px" }}
+          onChange={(st) => setSoTien(st.target.value)}
+          value={soTien}
+          style={{
+            width: "164px",
+            height: "50px",
+            fontSize: "20px",
+            outlineStyle: "none",
+          }}
         ></TextInput>
       </View>
 
@@ -176,17 +196,24 @@ export default function BankVietin({ navigation }) {
         <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
           Nội dung chuyển khoản
         </Text>
-      </View>
-
-      <View
-        style={{ flexDirection: "row", marginTop: "20px", marginLeft: "30px" }}
-      >
-        <View style={{ marginLeft: "20px" }}>
-          <Text
-            style={{ fontSize: "20px", color: "Black", fontWeight: "bold" }}
-          >
-            NGUYEN THI KIEU NGHI chuyen tien
-          </Text>
+        <View
+          style={{
+            marginTop: "20px",
+            width: "100%",
+            height: "50px",
+          }}
+        >
+          <TextInput
+            placeholder="Nội dung "
+            onChange={(nd) => setNoiDung(nd.target.value)}
+            value={noiDung}
+            style={{
+              width: "100%",
+              height: "30px",
+              fontSize: "20px",
+              outlineStyle: "none",
+            }}
+          ></TextInput>
         </View>
       </View>
 
@@ -211,7 +238,13 @@ export default function BankVietin({ navigation }) {
       >
         <Pressable
           onPress={() => {
-            navigation.navigate("BankVietin2");
+            navigation.navigate("BankVietin2", {
+              soTK,
+              chuTK,
+              tentk,
+              soTien,
+              noiDung,
+            });
           }}
           style={{
             width: "360px",

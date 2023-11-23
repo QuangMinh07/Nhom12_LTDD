@@ -110,7 +110,7 @@ export default function Account({ navigation }) {
               }}
             >
               <Text style={{ fontSize: "20px", fontWeight: "bold" }}>
-                123456789
+                012456789
                 <br />
                 NGUYEN THI KIEU NGHI
                 <br />

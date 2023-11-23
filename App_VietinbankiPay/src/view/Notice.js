@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Dimensions, ScrollView } from "react-native";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native";
 
-export default function Notice() {
+export default function Notice({ navigation }) {
+  const rou = useRoute();
+  const [currentDay, setCurrentDay] = useState("");
+
+  useEffect(() => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    var hours = new Date().getHours();
+    var minutes = new Date().getMinutes();
+    setCurrentDay(
+      hours + ":" + minutes + "," + date + "/" + month + "/" + year
+    );
+  }, []);
+
   return (
     <ScrollView>
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -16,6 +31,17 @@ export default function Notice() {
               alignItems: "center",
             }}
           >
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
+            >
+              <Image
+                source={require("../image/den.png")}
+                style={{ width: "22px", height: "25px" }}
+              ></Image>
+            </Pressable>
+
             <View>
               <Text
                 style={{ fontSize: 20, color: "#053684", fontWeight: "bold" }}
@@ -23,6 +49,7 @@ export default function Notice() {
                 Thông báo
               </Text>
             </View>
+
             <View
               style={{
                 flexDirection: "row",
@@ -39,7 +66,7 @@ export default function Notice() {
                   alignItems: "center",
                   justifyContent: "center",
                   marginHorizontal: 20,
-                  marginTop:"10px"
+                  marginTop: "10px",
                 }}
               >
                 <Image
@@ -47,6 +74,7 @@ export default function Notice() {
                   style={{ width: 25, height: 25 }}
                 />
               </View>
+
               <View
                 style={{
                   backgroundColor: "#ccc",
@@ -55,7 +83,7 @@ export default function Notice() {
                   borderRadius: 50,
                   alignItems: "center",
                   justifyContent: "center",
-                  marginTop:"10px"
+                  marginTop: "10px",
                 }}
               >
                 <Image
@@ -166,7 +194,7 @@ export default function Notice() {
           style={{
             backgroundColor: "#023051",
             width: "100%",
-            justifyContent: "center",
+            height: "100vh",
             alignItems: "center",
           }}
         >
@@ -192,7 +220,7 @@ export default function Notice() {
                   source={require("../image/Ellipse 9.png")}
                   style={{ width: 30, height: 30 }}
                 />
-                <Text style={{ marginLeft: 20 }}>11/11/2023</Text>
+                <Text style={{ marginLeft: 20 }}>{currentDay}</Text>
               </View>
               <Image
                 source={require("../image/cil_list.png")}
@@ -208,153 +236,19 @@ export default function Notice() {
               }}
             >
               <Text style={{ fontSize: 17, color: "#333", fontWeight: "bold" }}>
-                Thời Gian : 11/11/2023 <br />
-                Tài Khoản : 2222222
+                Thời Gian : {currentDay} <br />
+                <View style={{ flexDirection: "column" }}>
+                  <Text>
+                    Tài Khoản : {rou.params?.chuTK} <br />
+                  </Text>
+                  <View style={{marginLeft:"92px"}}>
+                    <Text>{rou.params?.tentk}</Text>
+                  </View>
+                </View>
                 <br />
-                Số dư: 10000000 VND
+                Số tiền gửi: {rou.params?.soTien}
                 <br />
-                Nội Dung : NguyenThiKieuNghi
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              backgroundColor: "#fff",
-              width: 365,
-              height: 175,
-              marginVertical: 20,
-              paddingHorizontal: 20,
-              borderRadius: 6,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../image/Ellipse 9.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-                <Text style={{ marginLeft: 20 }}>11/11/2023</Text>
-              </View>
-              <Image
-                source={require("../image/cil_list.png")}
-                style={{ width: 20, height: 20 }}
-              />
-            </View>
-            <View
-              style={{
-                width: 300,
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text style={{ fontSize: 17, color: "#333", fontWeight: "bold" }}>
-                Thời Gian : 11/11/2023 <br />
-                Tài Khoản : 2222222
-                <br />
-                Số dư: 10000000 VND
-                <br />
-                Nội Dung : NguyenThiKieuNghi
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              backgroundColor: "#fff",
-              width: 365,
-              height: 175,
-              marginVertical: 20,
-              paddingHorizontal: 20,
-              borderRadius: 6,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../image/Ellipse 9.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-                <Text style={{ marginLeft: 20 }}>11/11/2023</Text>
-              </View>
-              <Image
-                source={require("../image/cil_list.png")}
-                style={{ width: 20, height: 20 }}
-              />
-            </View>
-            <View
-              style={{
-                width: 300,
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text style={{ fontSize: 17, color: "#333", fontWeight: "bold" }}>
-                Thời Gian : 11/11/2023 <br />
-                Tài Khoản : 2222222
-                <br />
-                Số dư: 10000000 VND
-                <br />
-                Nội Dung : NguyenThiKieuNghi
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              backgroundColor: "#fff",
-              width: 365,
-              height: 175,
-              marginVertical: 20,
-              paddingHorizontal: 20,
-              borderRadius: 6,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../image/Ellipse 9.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-                <Text style={{ marginLeft: 20 }}>11/11/2023</Text>
-              </View>
-              <Image
-                source={require("../image/cil_list.png")}
-                style={{ width: 20, height: 20 }}
-              />
-            </View>
-            <View
-              style={{
-                width: 300,
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text style={{ fontSize: 17, color: "#333", fontWeight: "bold" }}>
-                Thời Gian : 11/11/2023 <br />
-                Tài Khoản : 2222222
-                <br />
-                Số dư: 10000000 VND
-                <br />
-                Nội Dung : NguyenThiKieuNghi
+                Nội Dung : {rou.params?.noiDung}
               </Text>
             </View>
           </View>

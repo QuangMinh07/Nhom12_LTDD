@@ -1,8 +1,32 @@
 import { View, Text, Image, TextInput, Pressable } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
+import { useRoute } from "@react-navigation/native";
 
-export default function Result({navigation}) {
+export default function Result({ navigation }) {
+  const [currentDay, setCurrentDay] = useState("");
+  const rou = useRoute();
+  const addNotify = () => {
+    const newItem = {
+      chuTK: rou.params?.chuTK,
+      tentk: rou.params?.tentk,
+      soTK: rou.params?.soTK,
+      soTien: rou.params?.soTien,
+      noiDung: rou.params?.noiDung,
+    };
+    navigation.navigate("Notice", newItem);
+  };
+  useEffect(() => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    var hours = new Date().getHours();
+    var minutes = new Date().getMinutes();
+    setCurrentDay(
+      hours + ":" + minutes + " ,  " + date + "/" + month + "/" + year
+    );
+  }, []);
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#0C036E" }}>
       <View style={{ flexDirection: "row" }}>
@@ -16,22 +40,37 @@ export default function Result({navigation}) {
             style={{
               width: "22px",
               height: "25px",
-              marginLeft: "40px",
+              marginLeft: "20px",
               marginTop: "30px",
             }}
           ></Image>
         </Pressable>
         <View style={{ marginTop: "30px", marginLeft: "70px" }}>
-          <Text style={{ fontSize: "20px", fontWeight: "bold", color: "white" }}>
+          <Text
+            style={{ fontSize: "20px", fontWeight: "bold", color: "white" }}
+          >
             Kết quả giao dịch
           </Text>
         </View>
+
+        <Pressable
+          onPress={() => {
+            addNotify();
+          }}
+          style={{ marginLeft: "50px", width: "70px", marginTop: "20px" }}
+        >
+          <Text
+            style={{ fontSize: "15px", fontWeight: "bold", color: "white" }}
+          >
+            Lịch sử giao dịch
+          </Text>
+        </Pressable>
       </View>
 
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <View
           style={{
-            width: "345px",
+            width: "355px",
             height: "590px",
             backgroundColor: "#FFFFFF",
             marginTop: "20px",
@@ -56,15 +95,21 @@ export default function Result({navigation}) {
               style={{ width: "35px", height: "35px" }}
             ></Image>
 
-            <View style={{ marginLeft: "30px", marginTop: "20px" }}>
+            <View
+              style={{
+                marginLeft: "40px",
+                width: "100px",
+              }}
+            >
               <Text
                 style={{
                   fontSize: "18px",
                   fontWeight: "bold",
                   color: "#676060",
+                  textAlign: "center",
                 }}
               >
-                08/11/2023
+                {currentDay}
               </Text>
             </View>
           </View>
@@ -132,8 +177,9 @@ export default function Result({navigation}) {
                 Từ tài khoản
               </Text>
             </View>
-            <View style={{ marginLeft: "100px" }}>
-              <TextInput placeholder="tiền"></TextInput>
+            <View style={{ marginLeft: "80px", flexDirection: "column" }}>
+              <Text>{rou.params?.chuTK}</Text>
+              <Text>{rou.params?.tentk}</Text>
             </View>
           </View>
 
@@ -155,8 +201,8 @@ export default function Result({navigation}) {
                 Đến tài khoản
               </Text>
             </View>
-            <View style={{ marginLeft: "100px" }}>
-              <TextInput placeholder="tiền"></TextInput>
+            <View style={{ marginLeft: "70px" }}>
+              <Text>{rou.params?.soTK}</Text>
             </View>
           </View>
 
@@ -178,8 +224,8 @@ export default function Result({navigation}) {
                 Số tiền
               </Text>
             </View>
-            <View style={{ marginLeft: "100px" }}>
-              <TextInput placeholder="tiền"></TextInput>
+            <View style={{ marginLeft: "119px" }}>
+              <Text>{rou.params?.soTien}</Text>
             </View>
           </View>
 
@@ -201,8 +247,8 @@ export default function Result({navigation}) {
                 Nội dung
               </Text>
             </View>
-            <View style={{ marginLeft: "100px" }}>
-              <TextInput placeholder="tiền"></TextInput>
+            <View style={{ marginLeft: "100px", width: "135px" }}>
+              <Text>{rou.params?.noiDung}</Text>
             </View>
           </View>
 

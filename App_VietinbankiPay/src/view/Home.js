@@ -156,12 +156,9 @@ export default function Home({ navigation }) {
         </View>
 
         <View style={{ flex: 3, flexDirection: "row" }}>
-          <Pressable
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
+          <View
             style={{
-              width: 170,
+              width: 220,
               height: 60,
               borderColor: "#333",
               borderWidth: 2,
@@ -173,18 +170,9 @@ export default function Home({ navigation }) {
               flexDirection: "row",
             }}
           >
-            <Image
-              source={require("../image/clarity_lock-line.png")}
-              style={{
-                width: "29px",
-                height: "34px",
-                marginLeft: "30px",
-                marginTop: "10px",
-              }}
-            ></Image>
             <Text
               style={{
-                marginLeft: "15px",
+                marginLeft: "50px",
                 marginTop: "15px",
                 color: "white",
                 fontSize: "15px",
@@ -192,9 +180,9 @@ export default function Home({ navigation }) {
                 fontWeight: 700,
               }}
             >
-              Đăng nhập
+              Nguyen Thi Kieu Nghi
             </Text>
-          </Pressable>
+          </View>
           <View
             style={{
               width: 80,
@@ -204,13 +192,15 @@ export default function Home({ navigation }) {
               borderRadius: 90,
               borderColor: "#116CF5",
               marginTop: "15px",
-              marginLeft: "-220px",
+              marginLeft: "-250px",
               backgroundColor: "#BAB5B5",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Text style={{ fontSize: 40, fontWeight: 700 }}>KN</Text>
+            <Text style={{ fontSize: 40, fontWeight: 700, color: "white" }}>
+              KN
+            </Text>
           </View>
         </View>
       </ImageBackground>

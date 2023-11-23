@@ -52,7 +52,7 @@ export default function Invest() {
       <View style={{ flex: 1 }}>
         <Text
           style={{
-            fontSize: "20",
+            fontSize: "20px",
             fontWeight: "bold",
             fontWeight: 700,
             marginLeft: "15px",
@@ -117,7 +117,7 @@ export default function Invest() {
               ></Image>
             </View>
             <View
-style={{
+              style={{
                 width: "60px",
                 height: "58px",
                 borderRadius: "6px",
@@ -218,7 +218,7 @@ style={{
                 height: "58px",
                 borderRadius: "6px",
                 backgroundColor: "#BDBDBD",
-marginLeft: "30px",
+                marginLeft: "30px",
               }}
             >
               <Image
@@ -323,7 +323,7 @@ marginLeft: "30px",
             height: "39px",
             borderRadius: "10px",
             backgroundColor: "#116CF5",
-alignItems: "center",
+            alignItems: "center",
             justifyContent: "center",
           }}
         >

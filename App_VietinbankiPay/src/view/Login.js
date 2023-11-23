@@ -13,10 +13,10 @@ import { AntDesign, Entypo } from "@expo/vector-icons";
 export default function Login({ navigation }) {
   var error = "";
   const [showPassword, setShowPassword] = useState(false);
-  const [inputName, setInputName] = useState("0396356806");
-  const [inputPass, setInputPass] = useState("KieuNghi24032002");
+  const [inputName, setInputName] = useState("0941432773");
+  const [inputPass, setInputPass] = useState("07102002Minh@");
   const users = [
-    { inputName: "0396356806", inputPass: "KieuNghi24032002" },
+    { inputName: "0941432773", inputPass: "07102002Minh@" },
     { inputName: "user2", inputPass: "password2" },
     // Thêm thông tin đăng nhập khác tại đây
   ];
@@ -86,7 +86,7 @@ export default function Login({ navigation }) {
               height: 200,
               justifyContent: "center",
               alignItems: "center",
-              marginTop:"-200px"
+              marginTop: "-200px",
             }}
           >
             {/* name */}
@@ -108,6 +108,7 @@ export default function Login({ navigation }) {
                     fontSize: "15px",
                     fontWeight: "bold",
                     color: "#BABABA",
+                    outlineStyle: "none",
                   }}
                 ></TextInput>
                 <Image
@@ -152,15 +153,18 @@ export default function Login({ navigation }) {
                     fontSize: "15px",
                     fontWeight: "bold",
                     color: "#BABABA",
+                    outlineStyle: "none",
                   }}
                 ></TextInput>
-                <Pressable onPress={() => setShowPassword(!showPassword)} style={{marginLeft:"120px"}}>
+                <Pressable
+                  onPress={() => setShowPassword(!showPassword)}
+                  style={{ marginLeft: "120px" }}
+                >
                   {showPassword == true ? (
-                    <AntDesign name="eye" size={24} color="#116CF5"  />
+                    <AntDesign name="eye" size={24} color="#116CF5" />
                   ) : (
                     <Entypo name="eye-with-line" size={24} color="#116CF5" />
                   )}
-                  
                 </Pressable>
               </View>
               <View style={{ width: "341px", borderWidth: "2px" }}></View>
@@ -184,7 +188,7 @@ export default function Login({ navigation }) {
             alignItems: "center",
             justifyContent: "center",
             marginLeft: "20px",
-            marginTop:"-450px"
+            marginTop: "-450px",
           }}
         >
           <Pressable
