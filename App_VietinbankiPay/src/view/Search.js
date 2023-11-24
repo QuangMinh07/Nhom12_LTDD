@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, ImageBackground, Image } from "react-native";
+import { View, Text, ScrollView, ImageBackground, Image, Pressable } from "react-native";
 import React from "react";
 
-export default function Search() {
+export default function Search({ navigation }) {
   return (
     <ScrollView>
       <View>
@@ -14,31 +14,43 @@ export default function Search() {
             justifyContent: "center",
           }}
         >
-          <View
-            style={{
-              width: "299px",
-              height: "47px",
-              borderRadius: "20px",
-              backgroundColor: "#D9D9D9",
-              alignItems: "center",
-              flexDirection: "row",
-              marginLeft: "-60px",
-            }}
-          >
-            <Image
-              source={require("../image/tim1.png")}
-              style={{ width: "30px", height: "30px", marginLeft: "20px" }}
-            ></Image>
-            <Text
+          <View style={{ flexDirection: "row" }}>
+            <View
               style={{
-                fontSize: "15px",
-                fontWeight: "bold",
-                color: "#75737D",
-                marginLeft: "10px",
+                width: "299px",
+                height: "47px",
+                borderRadius: "20px",
+                backgroundColor: "#D9D9D9",
+                alignItems: "center",
+                flexDirection: "row",
               }}
             >
-              Bạn đang muốn tìm gì?
-            </Text>
+              <Image
+                source={require("../image/tim1.png")}
+                style={{ width: "30px", height: "30px", marginLeft: "20px" }}
+              ></Image>
+              <Text
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  color: "#75737D",
+                  marginLeft: "10px",
+                }}
+              >
+                Bạn đang muốn tìm gì?
+              </Text>
+            </View>
+            <Pressable style={{ alignItems: "center", justifyContent: "center" }} onPress={() => {
+              navigation.navigate("Home");
+            }}>
+              <Text style={{
+                fontSize: "15px",
+                fontWeight: "bold",
+                color: "#116CF5",
+                marginLeft: "20px",
+              }}
+              >Thoát</Text>
+            </Pressable>
           </View>
         </ImageBackground>
         <View>
