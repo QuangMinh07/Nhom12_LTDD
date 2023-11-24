@@ -24,7 +24,6 @@ export default function Result({ navigation }) {
       soTK: rou.params?.soTK,
       soTien: rou.params?.soTien,
       noiDung: rou.params?.noiDung,
-      // Thêm các thuộc tính khác nếu cần
     };
 
     // Gửi yêu cầu POST đến API
