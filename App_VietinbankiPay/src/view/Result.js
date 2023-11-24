@@ -6,16 +6,6 @@ import { useRoute } from "@react-navigation/native";
 export default function Result({ navigation }) {
   const [currentDay, setCurrentDay] = useState("");
   const rou = useRoute();
-  const addNotify = () => {
-    const newItem = {
-      chuTK: rou.params?.chuTK,
-      tentk: rou.params?.tentk,
-      soTK: rou.params?.soTK,
-      soTien: rou.params?.soTien,
-      noiDung: rou.params?.noiDung,
-    };
-    navigation.navigate("Notice", newItem);
-  };
   useEffect(() => {
     var date = new Date().getDate();
     var month = new Date().getMonth() + 1;
@@ -25,6 +15,36 @@ export default function Result({ navigation }) {
     setCurrentDay(
       hours + ":" + minutes + " ,  " + date + "/" + month + "/" + year
     );
+    const apiUrl = "https://654ad3515b38a59f28ee4286.mockapi.io/bank1";
+
+    // Dữ liệu để gửi lên API
+    const transactionData = {
+      chuTK: rou.params?.chuTK,
+      tentk: rou.params?.tentk,
+      soTK: rou.params?.soTK,
+      soTien: rou.params?.soTien,
+      noiDung: rou.params?.noiDung,
+      // Thêm các thuộc tính khác nếu cần
+    };
+
+    // Gửi yêu cầu POST đến API
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Thêm các header khác nếu cần
+      },
+      body: JSON.stringify(transactionData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dữ liệu giao dịch gửi thành công:", data);
+        // Xử lý logic sau khi gửi dữ liệu thành công
+      })
+      .catch((error) => {
+        console.error("Lỗi khi gửi dữ liệu giao dịch:", error);
+        // Xử lý lỗi
+      });
   }, []);
 
   return (
@@ -52,19 +72,6 @@ export default function Result({ navigation }) {
             Kết quả giao dịch
           </Text>
         </View>
-
-        <Pressable
-          onPress={() => {
-            addNotify();
-          }}
-          style={{ marginLeft: "50px", width: "70px", marginTop: "20px" }}
-        >
-          <Text
-            style={{ fontSize: "15px", fontWeight: "bold", color: "white" }}
-          >
-            Lịch sử giao dịch
-          </Text>
-        </Pressable>
       </View>
 
       <View style={{ alignItems: "center", justifyContent: "center" }}>

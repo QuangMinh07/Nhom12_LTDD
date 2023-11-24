@@ -11,6 +11,7 @@ import React, { useState } from "react";
 export default function BankVietin({ navigation }) {
   const [soTien, setSoTien] = useState("");
   const [soTK, setSoTK] = useState("");
+  const [tenTK, settenTK] = useState("");
   const [chuTK, setChuTK] = useState("012456789");
   const [tentk, setChuTk1] = useState("Nguyễn Thị Kiều Nghi");
   const [noiDung, setNoiDung] = useState("");
@@ -109,7 +110,9 @@ export default function BankVietin({ navigation }) {
             outlineStyle: "none",
           }}
           onChange={(tk) => setSoTK(tk.target.value)}
-          value={soTK}
+          value={soTK} 
+          onChange1={(tk1) => setSoTK(tk1.target.value1)}
+          value1={tenTK}
         ></TextInput>
       </View>
 

@@ -3,10 +3,12 @@ import { Dimensions, ScrollView } from "react-native";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import axios from "axios"; // Import thư viện Axios
 
 export default function Notice({ navigation }) {
   const rou = useRoute();
   const [currentDay, setCurrentDay] = useState("");
+  const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
     var date = new Date().getDate();
@@ -17,6 +19,17 @@ export default function Notice({ navigation }) {
     setCurrentDay(
       hours + ":" + minutes + "," + date + "/" + month + "/" + year
     );
+
+    // Gọi API
+    axios
+      .get("https://654ad3515b38a59f28ee4286.mockapi.io/bank1")
+      .then((response) => {
+        // response.data chứa dữ liệu từ API
+        setApiData(response.data);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi gọi API:", error);
+      });
   }, []);
 
   return (
@@ -190,68 +203,71 @@ export default function Notice({ navigation }) {
             </View>
           </View>
         </View>
+
         <View
           style={{
             backgroundColor: "#023051",
             width: "100%",
-            height: "100vh",
             alignItems: "center",
           }}
         >
-          <View
-            style={{
-              backgroundColor: "#fff",
-              width: 365,
-              height: 175,
-              marginVertical: 20,
-              paddingHorizontal: 20,
-              borderRadius: 6,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../image/Ellipse 9.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-                <Text style={{ marginLeft: 20 }}>{currentDay}</Text>
-              </View>
-              <Image
-                source={require("../image/cil_list.png")}
-                style={{ width: 20, height: 20 }}
-              />
-            </View>
-            <View
-              style={{
-                width: 300,
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text style={{ fontSize: 17, color: "#333", fontWeight: "bold" }}>
-                Thời Gian : {currentDay} <br />
-                <View style={{ flexDirection: "column" }}>
-                  <Text>
-                    Tài Khoản : {rou.params?.chuTK} <br />
-                  </Text>
-                  <View style={{marginLeft:"92px"}}>
-                    <Text>{rou.params?.tentk}</Text>
+          {/* Hiển thị dữ liệu từ API */}
+          {apiData.map((item, index) => {
+            return (
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  width: 365,
+                  height: 175,
+                  marginVertical: 20,
+                  paddingHorizontal: 20,
+                  borderRadius: 6,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Image
+                      source={require("../image/Ellipse 9.png")}
+                      style={{ width: 30, height: 30 }}
+                    />
+                    <Text style={{ marginLeft: 20 }}>{currentDay}</Text>
                   </View>
+                  <Image
+                    source={require("../image/cil_list.png")}
+                    style={{ width: 20, height: 20 }}
+                  />
                 </View>
-                <br />
-                Số tiền gửi: {rou.params?.soTien}
-                <br />
-                Nội Dung : {rou.params?.noiDung}
-              </Text>
-            </View>
-          </View>
+                <View
+                  style={{
+                    width: 300,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: 10,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 17,
+                      color: "#333",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {/* Hiển thị dữ liệu từ state */}
+                    Thời Gian: {currentDay} <br />
+                    Tài Khoản: {item.soTK} <br />
+                    Số tiền gửi: {item.soTien} <br />
+                    Nội Dung: {item.noiDung}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
         </View>
       </View>
     </ScrollView>
