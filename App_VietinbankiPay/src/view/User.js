@@ -116,17 +116,23 @@ export default function User({ navigation }) {
               height: "34px",
             }}
           ></Image>
-          <Text
-            style={{
-              color: "black",
-              fontSize: "20px",
-              fontWeight: "bold",
-              fontWeight: 700,
-              marginLeft: "10px",
-            }}
-          >
-            Đăng nhập
-          </Text>
+
+          <Pressable onPress={() => {
+            navigation.navigate("Login");
+          }}>
+            <Text
+              style={{
+                color: "black",
+                fontSize: "20px",
+                fontWeight: "bold",
+                fontWeight: 700,
+                marginLeft: "10px",
+              }}
+            >
+              Đăng nhập
+            </Text>
+          </Pressable>
+
         </View>
       </View>
 
